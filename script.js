@@ -1,0 +1,17 @@
+let playerCount=2,current=0,round=1,extraStreak=0;
+let players=[{name:"Agni Shrine",points:3000},{name:"Varuna Shrine",points:3000},{name:"Vayu Shrine",points:3000},{name:"Prithvi Shrine",points:3000}];
+const elements=["🔥","💧","🌬️","🌿"];
+function go(id){document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");window.scrollTo(0,0)}
+function setPlayers(n,el){playerCount=n;document.querySelectorAll(".seg button").forEach(x=>x.classList.remove("active"));el.classList.add("active");renderPlayers()}
+function renderPlayers(){let box=document.getElementById("players");box.innerHTML="";for(let i=0;i<playerCount;i++)box.innerHTML+=`<div class="player"><div class="element">${elements[i]}</div><div><div style="font-size:10px;color:#d8a84d;letter-spacing:2px">SHRINE ${i+1}</div><input id="p${i}" value="${players[i].name}"></div></div>`}
+function begin(){for(let i=0;i<playerCount;i++)players[i].name=document.getElementById("p"+i).value.trim()||`Shrine ${i+1}`;current=0;round=1;updateDash();go("dashboard")}
+function updateDash(){document.getElementById("playerName").textContent=players[current].name;document.getElementById("topPoints").textContent=players[current].points.toLocaleString();document.getElementById("round").textContent=round;document.getElementById("turnTitle").textContent=`${players[current].name}'s Turn`}
+function kavade(type){if(type==="chauka"){document.getElementById("moveType").textContent="4";document.getElementById("moveText").textContent="HEJJE • CHAUKA";document.getElementById("moveDescription").textContent="4 shells facing up. Move 4 Hejje, then throw the Kavade again.";document.getElementById("moveStory").textContent="Fate grants you four steps and another chance. Use the physical board to make your move." ;extraStreak++;}else if(type==="bara"){document.getElementById("moveType").textContent="8";document.getElementById("moveText").textContent="HEJJE • BARA";document.getElementById("moveDescription").textContent="4 shells facing down. Move 8 Hejje, then throw the Kavade again.";document.getElementById("moveStory").textContent="The Kavade has spoken boldly. Eight steps are yours, and Fate calls you to throw again.";extraStreak++;}else{let n=prompt("How many Hejje did the Kavade give?","1");if(n===null)return;document.getElementById("moveType").textContent=n;document.getElementById("moveText").textContent="HEJJE";document.getElementById("moveDescription").textContent=`Move your pilgrim ${n} Hejje on the physical board.`;document.getElementById("moveStory").textContent="The path is yours. Decide how best to use the steps Fate has given you.";extraStreak=0}go("move")}
+function nextTurn(){current=(current+1)%playerCount;if(current===0)round++;extraStreak=0;updateDash()}
+function challenge(){go("challenge")}
+function answer(correct){if(correct){players[current].points+=1000;alert("Correct! +1,000 Rajya Points.");}else{players[current].points=Math.max(0,players[current].points-500);alert("Not quite. -500 Rajya Points.");}updateDash();go("dashboard")}
+function eventCard(){go("event")}
+function eventReward(){players[current].points+=500;alert("The shrine grants you +500 Rajya Points.");updateDash();go("dashboard")}
+function capture(){go("capture")}
+function giveCaptureReward(){players[current].points+=1000;alert("Capture recorded. +1,000 Rajya Points. The captured pilgrim returns to its shrine.");updateDash();go("dashboard")}
+renderPlayers()

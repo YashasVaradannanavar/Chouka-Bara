@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chowka Bara — The Sacred Journey</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <section id="home" class="screen active">
+    <div class="mandala">✦</div>
+    <div class="eyebrow">THE SACRED JOURNEY</div>
+    <h1>CHOWKA<br><span>BARA</span></h1>
+    <p class="intro">A physical game of fate, strategy and sacred journeys.</p>
+    <button class="gold-btn" onclick="go('setup')">BEGIN JOURNEY <b>→</b></button>
+  </section>
+
+  <section id="setup" class="screen">
+    <header><button class="icon-btn" onclick="go('home')">←</button><div><small>STEP 1</small><h2>Gather the Pilgrims</h2></div></header>
+    <div class="panel">
+      <label>NUMBER OF SHRINES</label>
+      <div class="seg"><button class="active" onclick="setPlayers(2,this)">2</button><button onclick="setPlayers(3,this)">3</button><button onclick="setPlayers(4,this)">4</button></div>
+    </div>
+    <div id="players"></div>
+    <button class="gold-btn full" onclick="begin()">ENTER THE SHRINES <b>→</b></button>
+  </section>
+
+  <section id="dashboard" class="screen">
+    <header>
+      <button class="icon-btn" onclick="go('home')">⌂</button>
+      <div><small>GAME MASTER</small><h2 id="turnTitle">Sacred Journey</h2></div>
+      <div class="points" id="topPoints">3000</div>
+    </header>
+
+    <div class="shrine-card">
+      <div class="round">ROUND <span id="round">1</span></div>
+      <h3 id="playerName">Player 1</h3>
+      <p id="shrineName">Sacred Shrine</p>
+    </div>
+
+    <div class="kavade">
+      <div class="shells">◒ ◓ ◒ ◓</div>
+      <h3>Throw the Kavade in real life.</h3>
+      <p>After the throw, choose the result below.</p>
+      <div class="result-grid">
+        <button onclick="kavade('normal')"><strong>OTHER</strong><span>Enter Hejje</span></button>
+        <button onclick="kavade('chauka')"><strong>CHAUKA</strong><span>4 Hejje + another throw</span></button>
+        <button onclick="kavade('bara')"><strong>BARA</strong><span>8 Hejje + another throw</span></button>
+      </div>
+    </div>
+
+    <div class="quick">
+      <button onclick="eventCard()">🏛️ KINGDOM EVENT</button>
+      <button onclick="challenge()">🧠 CHALLENGE</button>
+      <button onclick="capture()">⚔️ CAPTURE</button>
+    </div>
+    <button class="ghost full" onclick="nextTurn()">END TURN →</button>
+  </section>
+
+  <section id="move" class="screen">
+    <header><button class="icon-btn" onclick="go('dashboard')">←</button><div><small>FATE HAS SPOKEN</small><h2>Your Hejje</h2></div></header>
+    <div class="big-result"><span id="moveType">4</span><small id="moveText">HEJJE</small></div>
+    <p class="center" id="moveDescription"></p>
+    <div class="panel story"><b>THE GAME MASTER</b><p id="moveStory"></p></div>
+    <button class="gold-btn full" onclick="go('dashboard')">CONTINUE JOURNEY <b>→</b></button>
+  </section>
+
+  <section id="challenge" class="screen">
+    <header><button class="icon-btn" onclick="go('dashboard')">←</button><div><small>KNOWLEDGE IS POWER</small><h2>Royal Challenge</h2></div></header>
+    <div class="challenge-card">
+      <div class="cost">COST <b>500</b></div>
+      <p id="question">Which quality is most important when planning several moves ahead?</p>
+      <div class="answers">
+        <button onclick="answer(false)">Speed</button>
+        <button onclick="answer(true)">Strategy</button>
+        <button onclick="answer(false)">Luck</button>
+        <button onclick="answer(false)">Guessing</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="event" class="screen">
+    <header><button class="icon-btn" onclick="go('dashboard')">←</button><div><small>KINGDOM EVENT</small><h2>A Message from the Shrine</h2></div></header>
+    <div class="event-card">
+      <div class="event-symbol">✦</div>
+      <h2 id="eventTitle">The Ancient Gateway</h2>
+      <p id="eventText">An ancient gateway opens before your pilgrim. Will you seek the blessing of knowledge?</p>
+      <button class="gold-btn full" onclick="eventReward()">ACCEPT THE OMEN</button>
+      <button class="ghost full" onclick="go('dashboard')">DECLINE</button>
+    </div>
+  </section>
+
+  <section id="capture" class="screen">
+    <header><button class="icon-btn" onclick="go('dashboard')">←</button><div><small>RIGHT OF PASSAGE</small><h2>Capture Recorded</h2></div></header>
+    <div class="capture-card">
+      <div class="event-symbol">⚔</div>
+      <h2>A Worthy Deed</h2>
+      <p>Record a physical capture on the board. The captured pilgrim returns to its shrine.</p>
+      <div class="reward">+1,000 <small>RAJYA POINTS</small></div>
+      <button class="gold-btn full" onclick="giveCaptureReward()">RECORD CAPTURE</button>
+    </div>
+  </section>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
