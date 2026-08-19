@@ -14,8 +14,3 @@ index.html
 style.css
 script.js
 riddles.js
-
-Upload all four files to GitHub Pages.
-
-IMPORTANT:
-The question bank is a prototype. Review and fact-check all questions/options before using it as final educational content.
