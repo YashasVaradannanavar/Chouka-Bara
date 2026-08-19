@@ -1,5 +1,21 @@
-Chowka Bara Game Master V3
+CHOWKA BARA GAME MASTER V4
 
-100 built-in riddles: 25 per age group (8-10, 11-13, 14-17, 18+). Age is entered once during setup. Riddles are randomly selected without repeating for a team until its pool is exhausted. No AI/API/key/payment is needed.
+Changes:
+- Age group selected once per team during setup.
+- 100 multiple-choice questions: 25 per age group.
+- Questions are restricted to Indian history, culture, heritage, festivals, literature, architecture, classical arts, personalities, movements and related topics.
+- Each age group has its own question pool.
+- Questions are randomly selected and do not repeat for a team until that pool is exhausted.
+- Answers are always displayed as four options.
+- No AI/API/key/payment is required.
 
-Upload index.html, style.css, script.js and riddles.js to GitHub Pages. Review factual/cultural questions before final deployment.
+Files:
+index.html
+style.css
+script.js
+riddles.js
+
+Upload all four files to GitHub Pages.
+
+IMPORTANT:
+The question bank is a prototype. Review and fact-check all questions/options before using it as final educational content.
