@@ -1,4 +1,4 @@
-CHOWKA BARA GAME MASTER V4
+CHOUKA BARA GAME MASTER V4
 
 Changes:
 - Age group selected once per team during setup.
