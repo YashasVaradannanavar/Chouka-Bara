@@ -14,7 +14,7 @@ Google handles authentication.
 */
 
 const GOOGLE_CLIENT_ID = "33548652224-ieojbv1tn67t8a3n457r6c42hol5vt3n.apps.googleusercontent.com";
-const APPS_SCRIPT_URL = "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwS1ExDFa_5h1HvMtPWyVA-BeOjfLJNly3rH-Dpnr91eLOKRVBixl2vWkdsegr3Nc2N/exec";
 
 let currentUser = null;
 
