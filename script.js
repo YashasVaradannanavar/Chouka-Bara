@@ -2,7 +2,7 @@ const GOOGLE_CLIENT_ID =
   "33548652224-ieojbv1tn67t8a3n457r6c42hol5vt3n.apps.googleusercontent.com";
 
 const APPS_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbwS1ExDFa_5h1HvMtPWyVA-BeOjfLJNly3rH-Dpnr91eLOKRVBixl2vWkdsegr3Nc2N/exec";
+  "https://script.google.com/macros/s/AKfycbwY-XeVrowYic6_GCWtmxtPp-QvpKP7U1MvovUAIzp3LAvyADyNF8dxjv9ku2A6sbYo/exec";
 
 let currentUser = null;
 
