@@ -13,7 +13,7 @@ This site NEVER asks for the user's Gmail password.
 Google handles authentication.
 */
 
-const GOOGLE_CLIENT_ID = "PASTE_YOUR_GOOGLE_OAUTH_CLIENT_ID_HERE";
+const GOOGLE_CLIENT_ID = "33548652224-ieojbv1tn67t8a3n457r6c42hol5vt3n.apps.googleusercontent.com";
 const APPS_SCRIPT_URL = "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
 
 let currentUser = null;
