@@ -1,61 +1,330 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>YATRA — Secure Game Portal</title>
-<link rel="stylesheet" href="style.css">
-<script src="https://accounts.google.com/gsi/client" async defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YATRA — Kingdoms</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
-<div class="stars"></div>
-<main>
-  <header>
-    <div class="crown">♛</div>
-    <div class="eyebrow">THE ROYAL JOURNEY</div>
-    <h1>YATRA</h1>
-    <p>Traditional games. One verified journey.</p>
-    <div class="ornament">✦ ━━━━━ ✦ ━━━━━ ✦</div>
-  </header>
+  <div class="page-glow"></div>
 
-  <section class="card" id="loginCard">
-    <div class="icon">♙</div>
-    <span class="label">SECURE ACCESS</span>
-    <h2>Enter Yatra</h2>
-    <p class="muted">Sign in with your Google account. We never ask for or store your Gmail password.</p>
-    <div id="googleBtn"></div>
-    <div id="loginMessage" class="message"></div>
-  </section>
+  <main class="app">
+    <!-- AUTH -->
+    <section id="loginCard" class="auth-screen">
+      <div class="brand">
+        <div class="brand-kicker">ROOTS • PLAY • LEARN • GROW</div>
+        <div class="brand-logo">YATRA</div>
+        <p>Journey through India's stories.</p>
+      </div>
+      <div class="card auth-card">
+        <div class="seal">♕</div>
+        <h1>Welcome to YATRA</h1>
+        <p class="muted">Sign in with your Google account to continue your journey.</p>
+        <div id="googleBtn" class="google-btn"></div>
+        <p id="loginMessage" class="message"></p>
+      </div>
+    </section>
 
-  <section class="card hidden" id="activationCard">
-    <div class="user">
-      <img id="avatar" alt="">
-      <div><strong id="userName"></strong><small id="userEmail"></small></div>
+    <section id="activationCard" class="auth-screen hidden">
+      <div class="brand compact">
+        <div class="brand-kicker">YATRA ACCESS</div>
+        <div class="brand-logo">ACTIVATE</div>
+      </div>
+      <div class="card auth-card">
+        <div class="user-row">
+          <img id="avatar" alt="Profile">
+          <div>
+            <strong id="userName">Yatra Player</strong>
+            <small id="userEmail"></small>
+          </div>
+        </div>
+        <h1>Unlock YATRA</h1>
+        <p class="muted">Enter your activation key to unlock the game on this Google account.</p>
+        <input id="code" type="text" autocomplete="off" placeholder="ACTIVATION KEY">
+        <button id="activate" class="primary-btn">ACTIVATE</button>
+        <p id="activationMessage" class="message"></p>
+        <button id="logout" class="link-btn">Sign out</button>
+      </div>
+    </section>
+
+    <!-- GAME -->
+    <section id="gameCard" class="hidden">
+      <header class="topbar">
+        <div class="brand-chip"><span>♕</span><span id="brandGameLabel">YATRA<br><b>GAMES</b></span></div>
+        <div id="chapterLabel" class="chapter">CHOOSE YOUR JOURNEY <span>📜</span></div>
+        <div class="status-chip">GAME IN<br><b>PROGRESS</b><br>⌛</div>
+      </header>
+
+
+      <!-- GAME SELECTION -->
+      <section id="gameSelectionScreen" class="screen">
+        <div class="selection-hero">
+          <div class="eyebrow">YATRA • GAMES</div>
+          <h2>CHOOSE YOUR GAME</h2>
+          <p>Every game tells a different story. Swipe to explore your journey.</p>
+        </div>
+
+        <div class="game-carousel-shell">
+          <button id="gamePrev" class="carousel-arrow" aria-label="Previous game">‹</button>
+          <div id="gameCarousel" class="game-carousel">
+            <article class="game-slide active" data-game="chouka-bara">
+              <div class="game-art chouka-art">♟</div>
+              <div class="game-slide-body">
+                <div class="game-status unlocked">UNLOCKED</div>
+                <h3>CHOUKA BARA</h3>
+                <p>The classic Karnataka board game of strategy, chance and clever moves.</p>
+                <button class="primary-btn gold-btn select-game-btn" data-game="chouka-bara">SELECT GAME →</button>
+              </div>
+            </article>
+
+            <article class="game-slide locked" data-game="alaguli-mane">
+              <div class="game-art alaguli-art">◉</div>
+              <div class="game-slide-body">
+                <div class="game-status coming">COMING SOON</div>
+                <h3>ALAGULI MANE</h3>
+                <p>A traditional seed-and-pit game of calculation and strategy.</p>
+                <button class="secondary-btn select-game-btn" data-game="alaguli-mane" disabled>COMING SOON</button>
+              </div>
+            </article>
+
+            <article class="game-slide locked" data-game="pachisi">
+              <div class="game-art pachisi-art">✦</div>
+              <div class="game-slide-body">
+                <div class="game-status coming">COMING SOON</div>
+                <h3>PACHISI</h3>
+                <p>An ancient Indian race game and a historic relative of Ludo.</p>
+                <button class="secondary-btn select-game-btn" data-game="pachisi" disabled>COMING SOON</button>
+              </div>
+            </article>
+          </div>
+          <button id="gameNext" class="carousel-arrow" aria-label="Next game">›</button>
+        </div>
+
+        <div class="carousel-dots" id="gameDots">
+          <button class="active" data-slide="0" aria-label="Chouka Bara"></button>
+          <button data-slide="1" aria-label="Alaguli Mane"></button>
+          <button data-slide="2" aria-label="Pachisi"></button>
+        </div>
+        <div class="swipe-hint">← SWIPE TO EXPLORE →</div>
+      </section>
+
+      <!-- THEME SELECTION -->
+      <section id="themeSelectionScreen" class="screen hidden">
+        <button class="back-btn" id="backToGames">← BACK TO GAMES</button>
+        <div class="selection-hero">
+          <div class="eyebrow">CHOUKA BARA</div>
+          <h2>CHOOSE YOUR THEME</h2>
+          <p>Choose the world that shapes the colours, textures and atmosphere of your game.</p>
+        </div>
+
+        <div class="theme-grid">
+          <button class="theme-card theme-rajya" data-theme="rajya">
+            <span class="theme-symbol">♕</span>
+            <span class="theme-name">RAJYA</span>
+            <span class="theme-desc">Royal gold, deep earth tones and a regal kingdom atmosphere.</span>
+            <span class="theme-select">SELECT →</span>
+          </button>
+
+          <button class="theme-card theme-navarasa" data-theme="navarasa">
+            <span class="theme-symbol">✦</span>
+            <span class="theme-name">NAVARASA</span>
+            <span class="theme-desc">Warm expressive tones inspired by the nine emotions.</span>
+            <span class="theme-select">SELECT →</span>
+          </button>
+
+          <button class="theme-card theme-panchabootha" data-theme="panchabootha">
+            <span class="theme-symbol">✥</span>
+            <span class="theme-name">PANCHABOOTHA</span>
+            <span class="theme-desc">Natural greens and cool stone tones inspired by the five elements.</span>
+            <span class="theme-select">SELECT →</span>
+          </button>
+
+          <button class="theme-card theme-kala" data-theme="kala">
+            <span class="theme-symbol">♫</span>
+            <span class="theme-name">KALA AND YUGA</span>
+            <span class="theme-desc">A scholarly, artistic atmosphere with midnight purple accents.</span>
+            <span class="theme-select">SELECT →</span>
+          </button>
+
+          <button class="theme-card theme-kshetra" data-theme="kshetra">
+            <span class="theme-symbol">⌂</span>
+            <span class="theme-name">KSHETRA AND DEVALAYA</span>
+            <span class="theme-desc">Temple-inspired copper, sandstone and sacred-earth tones.</span>
+            <span class="theme-select">SELECT →</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- SETUP -->
+      <section id="setupScreen" class="screen">
+        <div class="hero">
+          <div class="eyebrow">THE KINGDOMS JOURNEY</div>
+          <h2>Choose Your Players</h2>
+          <p>Choose the number of players, then enter each player's name and age. Characters are assigned randomly after everyone is ready.</p>
+        </div>
+
+        <div class="card setup-card">
+          <div class="section-label">NUMBER OF PLAYERS</div>
+          <div id="playerCountButtons" class="count-grid">
+            <button data-count="2">2 PLAYERS</button>
+            <button data-count="3">3 PLAYERS</button>
+            <button data-count="4">4 PLAYERS</button>
+          </div>
+
+          <div id="playerInputs" class="player-inputs"></div>
+
+          <button id="beginGame" class="primary-btn gold-btn" disabled>ASSIGN CHARACTERS →</button>
+          <p id="dataMessage" class="message"></p>
+        </div>
+      </section>
+
+      <!-- DASHBOARD -->
+      <section id="dashboardScreen" class="screen hidden">
+        <div class="dashboard-head">
+          <div>
+            <div id="worldThemeLabel" class="eyebrow">WORLD • KINGDOMS</div>
+            <h2>The Young Heir</h2>
+          </div>
+          <button id="newGameBtn" class="small-btn">NEW GAME</button>
+        </div>
+
+        <div id="playerStrip" class="player-strip"></div>
+
+        <div class="card event-card">
+          <div class="event-lock">♙</div>
+          <div class="eyebrow">RIDDLE EVENT</div>
+          <h2>THE WISE ADVISOR</h2>
+          <p id="eventDescription">Select a player to begin a riddle challenge.</p>
+          <div class="event-actions">
+            <button id="solveRiddleBtn" class="primary-btn gold-btn">SOLVE PRAHELI <span>🪙 500 PTS</span></button>
+            <button id="useCharacterBtn" class="secondary-btn">USE CHARACTER ABILITY</button>
+            <button id="nextTurnBtn" class="text-action pass-turn-main">PASS TURN →</button>
+            </div>
+        </div>
+
+        <div class="card turn-card">
+          <div class="eyebrow">♕ CURRENT TURN</div>
+          <h2 id="turnTitle">PLAYER 1'S TURN</h2>
+          <p>Tap a player above to switch the active player, or pass the turn after your actions.</p>
+        </div>
+
+        <div class="card log-card">
+          <div class="section-label">EVENT LOG</div>
+          <div id="eventLog"></div>
+        </div>
+      </section>
+
+      <!-- PROFILE -->
+      <section id="profileScreen" class="screen hidden">
+        <button id="backDashboard" class="back-btn">← Back to Kingdoms</button>
+        <div id="profileContent"></div>
+      </section>
+
+      <!-- DIFFICULTY -->
+      <section id="difficultyScreen" class="screen hidden">
+        <button class="back-btn" data-back="dashboardScreen">← Back</button>
+        <div class="center-title">
+          <div class="eyebrow">THE WISE ADVISOR</div>
+          <h2>Choose Your Challenge</h2>
+          <p>Spend 500 points to reveal one random riddle for your age group.</p>
+        </div>
+        <div class="difficulty-grid">
+          <button class="difficulty easy" data-difficulty="Easy"><b>EASY</b><span>Begin your journey</span></button>
+          <button class="difficulty medium" data-difficulty="Medium"><b>MEDIUM</b><span>Test your knowledge</span></button>
+          <button class="difficulty hard" data-difficulty="Hard"><b>HARD</b><span>Prove your mastery</span></button>
+        </div>
+        <p id="difficultyMessage" class="message"></p>
+      </section>
+
+      <!-- RIDDLE -->
+      <section id="riddleScreen" class="screen hidden">
+        <div class="riddle-layout">
+          <aside id="riddlePlayerCard" class="side-player"></aside>
+          <div class="card riddle-card">
+            <div class="riddle-icon">📖</div>
+            <div id="riddleDifficulty" class="eyebrow">QUESTION REVEALED</div>
+            <h2>SOLVE FOR ADVANTAGE</h2>
+            <div id="timer" class="timer">30</div>
+            <div id="riddleQuestion" class="question-box"></div>
+            <div id="riddleOptions" class="answer-grid"></div>
+            <div id="riddleResult" class="result-box hidden"></div>
+            <button id="backFromRiddle" class="primary-btn gold-btn hidden">BACK TO KINGDOMS</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- CHARACTER ACTION -->
+      <section id="characterActionScreen" class="screen hidden">
+        <button class="back-btn" data-back="profileScreen">← Back</button>
+        <div class="center-title">
+          <div class="eyebrow">SPECIAL ABILITY</div>
+          <h2 id="characterActionTitle">CHARACTER</h2>
+        </div>
+        <div class="card action-card">
+          <div id="characterActionIcon" class="large-icon">♕</div>
+          <h3 id="characterActionAbility">Ability</h3>
+          <p id="characterActionDescription"></p>
+          <div class="physical-note">
+            <b>Perform the action on the physical board.</b>
+            <span>The website does not track pawn positions.</span>
+          </div>
+          <button id="characterDoneBtn" class="primary-btn gold-btn">DONE — MARK AS USED</button>
+          <button id="cancelCharacterBtn" class="link-btn">Cancel</button>
+        </div>
+      </section>
+
+      <!-- ADVANTAGES -->
+      <section id="advantageScreen" class="screen hidden">
+        <button id="closeAdvantages" class="back-btn">← Back</button>
+        <div class="center-title">
+          <div class="eyebrow">PLAYER ADVANTAGES</div>
+          <h2 id="advantageTitle">Advantages</h2>
+          <p>Every earned advantage can be used once.</p>
+        </div>
+        <div id="advantageList" class="advantage-list"></div>
+      </section>
+
+      <footer class="game-footer">
+        <span id="welcomeName"></span>
+        <button id="logout2" class="link-btn">Sign out</button>
+      </footer>
+    </section>
+  </main>
+
+
+  <div id="advantageModal" class="modal-backdrop hidden">
+    <div class="modal-card">
+      <div class="modal-icon">✦</div>
+      <div class="eyebrow">ADVANTAGE EARNED</div>
+      <h2 id="modalAdvantageName">Advantage</h2>
+      <p id="modalAdvantageDescription"></p>
+      <div class="modal-difficulty" id="modalAdvantageDifficulty"></div>
+      <div class="modal-actions">
+        <button id="modalUseAdvantage" class="primary-btn gold-btn">USE ADVANTAGE</button>
+        <button id="modalDiscardAdvantage" class="secondary-btn">DISCARD</button>
+      </div>
     </div>
-    <span class="label">ACTIVATION</span>
-    <h2>Unlock Your Game</h2>
-    <p class="muted">Your activation code will be permanently associated with this verified Google account.</p>
-    <input id="code" maxlength="32" placeholder="YATRA-XXXX-XXXX" autocomplete="off">
-    <button id="activate">VERIFY & UNLOCK</button>
-    <div id="activationMessage" class="message"></div>
-    <button class="linkBtn" id="logout">Sign out</button>
-  </section>
+  </div>
 
-  <section class="card hidden" id="gameCard">
-    <div class="success">✓</div>
-    <span class="label">ACCESS GRANTED</span>
-    <h2>Welcome, <span id="welcomeName"></span></h2>
-    <p class="muted">This Google account is verified for Yatra.</p>
-    <div class="games">
-      <button class="game" onclick="launchGame('game.html')"><b>🎲</b><span>Chowka Bara</span><small>Play now</small></button>
-      <button class="game" onclick="comingSoon()"><b>🏛️</b><span>Game II</span><small>Coming soon</small></button>
-      <button class="game" onclick="comingSoon()"><b>🪔</b><span>Game III</span><small>Coming soon</small></button>
+  <div id="advantageActionModal" class="modal-backdrop hidden">
+    <div class="modal-card">
+      <div class="modal-icon">♟</div>
+      <div class="eyebrow">PERFORM ON THE PHYSICAL BOARD</div>
+      <h2 id="actionAdvantageName">Advantage</h2>
+      <p id="actionAdvantageDescription"></p>
+      <div class="physical-note">
+        <b>Perform this action on the physical board.</b>
+        <span>The website does not track pawn positions or dice/Kavade results.</span>
+      </div>
+      <div class="modal-actions">
+        <button id="doneAdvantage" class="primary-btn gold-btn">DONE — MARK AS USED</button>
+      </div>
     </div>
-    <div class="account"><span id="verifiedEmail"></span><button class="linkBtn" id="logout2">Sign out</button></div>
-  </section>
+  </div>
 
-  <footer>YATRA · A journey through India's traditional games</footer>
-</main>
-<script src="script.js"></script>
+  <div id="toast" class="toast"></div>
+  <script src="script.js" defer></script>
 </body>
 </html>
