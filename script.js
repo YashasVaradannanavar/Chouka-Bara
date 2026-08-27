@@ -16,7 +16,7 @@ const GAME_SHEET_ID =
 const STARTING_POINTS = 3000;
 const RIDDLE_COST = 500;
 const CORRECT_REWARD = 1000;
-const RIDDLE_SECONDS = 90;
+const RIDDLE_SECONDS = 30;
 
 const SHEETS = {
   characters: "Characters",
